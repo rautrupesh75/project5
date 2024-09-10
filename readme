@@ -1,0 +1,51 @@
+###### Please execute commands in same sequence ####################
+kubectl delete deployment webapp-deployment
+kubectl delete deployment mongo-deployment
+kubectl delete service webapp-service
+kubectl delete service mongo-service
+kubectl get pods
+kubectl get deployment
+kubectl get service
+kubectl get pv
+kubectl get pvc
+minikube stop
+minikube start
+kubectl logs -f <deployment/service/db-deployment>
+
+kubectl apply -f mongo-configmap.yaml  
+kubectl apply -f mongo-secret.yaml 
+kubectl apply -f pv.yaml
+kubectl apply -f mongo-deployment.yaml 
+kubectl apply -f webapp.yaml
+
+nanajanashia/k8s-demo-app:v1.0 - working
+devopsedu/employee:latest - not working
+httpd - not working
+rautrupesh/spring-boot-mongo-app:latest - not working
+
+##### Port Forward the webapp service using below command ##########
+minikube service webapp-service --url
+kubectl port-forward --address 172.31.45.96 svc/webapp-service 30100:3000
+
+kubectl port-forward --address (private IP) 172.30.208.1 svc/webapp-service 30100:3000
+kubectl port-forward --address 172.30.208.1 svc/webapp-service 30101:3001
+kubectl port-forward pod/webapp-deployment2-76c665f595-j5xks 30100:3000
+
+minikube service nginx-service --url
+
+kubectl apply -f pvc.yaml
+kubectl apply -f secret.yaml
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+
+minikube service my-employee-service --url
+kubectl port-forward --address 172.30.208.1 svc/my-employee-service 30100:3000
+
+nc -v localhost 32500
+sudo ufw default allow routed
+sudo iptables -P FORWARD ACCEPT
+sudo iptables -L
+sudo iptables -A INPUT -p tcp --dport 32500 -j ACCEPT
+http://172.30.208.1:30100/
+netstat -ano | findstr :32500
+taskkill /PID 15416 /F
